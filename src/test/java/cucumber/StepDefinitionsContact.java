@@ -1,28 +1,41 @@
 package cucumber;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import junit.framework.Assert;
 
 public class StepDefinitionsContact {
+	
+	WebDriver driver = null;
 
 	@Given("^I am on my zoo website$")
-	public void i_am_on_my_zoo_website() throws Throwable {
-	    
+	public void shouldNavigateToZooSite() throws Throwable {
+		System.setProperty("webdriver.chrome.driver", "/opt/google/chrome/chromedriver");
+		driver = new ChromeDriver();
+		driver.navigate().to("http://");
 	}
 
 	@When("^I click on the contact link$")
-	public void i_click_on_the_contact_link() throws Throwable {
-	    
+	public void shouldClickOnContactLink() throws Throwable {
+	    driver.findElement(By.id("contact_link")).click();
 	}
 
 	@When("^populate the contact form$")
-	public void populate_the_contact_form() throws Throwable {
-	    
+	public void shouldPopulateContactForm() throws Throwable {
+	    driver.findElement(By.name("nome_field")).sendKeys("Jack Joe");
+	    driver.findElement(By.name("address_field")).sendKeys("Happy Land");
+	    driver.findElement(By.name("postcode_field")).sendKeys("A1 S22");
+	    driver.findElement(By.name("email_field")).sendKeys("iwillsubscribe@tothis.channel");
+	    driver.findElement(By.id("submit_message")).click();
 	}
 
 	@Then("^I should be on the contact confirmation page$")
-	public void i_should_be_on_the_contact_confirmation_page() throws Throwable {
-	    
+	public void checkOnContactConfirmationPage() throws Throwable {
+		Assert.assertTrue("Not on contact confirmation page", driver.getTitle().equals("Contact Confirmation"));
 	}
 }
