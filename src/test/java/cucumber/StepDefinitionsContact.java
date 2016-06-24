@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -25,7 +26,7 @@ public class StepDefinitionsContact {
 	    driver.findElement(By.id("contact_link")).click();
 	}
 
-	@When("^populate the contact form$")
+	@And("^populate the contact form$")
 	public void shouldPopulateContactForm() throws Throwable {
 	    driver.findElement(By.name("nome_field")).sendKeys("Jack Joe");
 	    driver.findElement(By.name("address_field")).sendKeys("Happy Land");
@@ -36,6 +37,6 @@ public class StepDefinitionsContact {
 
 	@Then("^I should be on the contact confirmation page$")
 	public void checkOnContactConfirmationPage() throws Throwable {
-		Assert.assertTrue("Not on contact confirmation page", driver.getTitle().equals("Contact Confirmation"));
+		Assert.assertTrue("Not on contact confirmation page", driver.getTitle().equals("Contact"));
 	}
 }
