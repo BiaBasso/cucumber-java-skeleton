@@ -18,7 +18,7 @@ public class StepDefinitionsContact {
 	public void shouldNavigateToZooSite() throws Throwable {
 		System.setProperty("webdriver.chrome.driver", "/opt/google/chrome/chromedriver");
 		driver = new ChromeDriver();
-		driver.navigate().to("http://");
+		driver.navigate().to("http://192.168.0.22/Projetos/B/Home.html");
 	}
 
 	@When("^I click on the contact link$")
@@ -28,7 +28,7 @@ public class StepDefinitionsContact {
 
 	@And("^populate the contact form$")
 	public void shouldPopulateContactForm() throws Throwable {
-	    driver.findElement(By.name("nome_field")).sendKeys("Jack Joe");
+	    driver.findElement(By.name("name_field")).sendKeys("Jack Joe");
 	    driver.findElement(By.name("address_field")).sendKeys("Happy Land");
 	    driver.findElement(By.name("postcode_field")).sendKeys("A1 S22");
 	    driver.findElement(By.name("email_field")).sendKeys("iwillsubscribe@tothis.channel");
