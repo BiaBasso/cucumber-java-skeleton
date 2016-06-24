@@ -1,11 +1,5 @@
 Feature: Check the page title
 
-  Scenario: Check page title for Home page
-    Given I am on the zoo website
-    When I navigate to Home
-    Then I check page title is Home
-    And I close the browser
-    
   Scenario: Check page title for Adoption page
     Given I am on the zoo website
     When I navigate to Adoption
