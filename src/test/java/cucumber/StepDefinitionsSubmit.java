@@ -1,9 +1,12 @@
 package cucumber;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -27,11 +30,18 @@ public class StepDefinitionsSubmit {
 	}
 
 	@And("^I submit the form with valid data$")
-	public void i_submit_the_form_with_valid_data() throws Throwable {
-	    driver.findElement(By.name("name_field")).sendKeys("name value");
-	    driver.findElement(By.name("address_field")).sendKeys("address value");
-	    driver.findElement(By.name("postcode_field")).sendKeys("postcode value");
-	    driver.findElement(By.name("email_field")).sendKeys("email value");
+	public void submitContactForm(DataTable table) throws Throwable {
+		
+		//System.out.println(table);
+		
+		List<List<String>> data = table.raw();
+		
+		System.out.println(data.get(1).get(1));
+		
+	    driver.findElement(By.name("name_field")).sendKeys(data.get(1).get(1));
+	    driver.findElement(By.name("address_field")).sendKeys(data.get(2).get(1));
+	    driver.findElement(By.name("postcode_field")).sendKeys(data.get(3).get(1));
+	    driver.findElement(By.name("email_field")).sendKeys(data.get(4).get(1));
 	    driver.findElement(By.id("submit_message")).click();
 	}
 
