@@ -18,7 +18,7 @@ public class StepDefinitionsSubmit {
 	public void navigateToZoo() throws Throwable {
 		System.setProperty("webdriver.chrome.driver", "/opt/google/chrome/chromedriver");
 		driver = new ChromeDriver();
-		driver.navigate().to("http://192.168.0.22/Projetos/B/Home.html");
+		driver.navigate().to("http://192.168.0.24/Projetos/B/Home.html");
 	}
 
 	@When("^I navigate to contact$")
