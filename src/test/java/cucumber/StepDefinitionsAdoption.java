@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -13,11 +15,22 @@ import junit.framework.Assert;
 public class StepDefinitionsAdoption {
 
 	WebDriver driver = null;
+	
+	@Before
+	public void testSetUp(){
+		System.out.println("Before method executed");
+		System.setProperty("webdriver.chrome.driver", "/opt/google/chrome/chromedriver");
+		driver = new ChromeDriver();
+	}
+	
+	@After
+	public void testShutDown(){
+		System.out.println("After method executed");
+		driver.quit();
+	}
 
 	@Given("^I am on the zoo sites$")
 	public void navigateToZoo() throws Throwable {
-		System.setProperty("webdriver.chrome.driver", "/opt/google/chrome/chromedriver");
-		driver = new ChromeDriver();
 		driver.navigate().to("http://192.168.0.24/Projetos/B/Home.html");
 	}
 
@@ -43,6 +56,5 @@ public class StepDefinitionsAdoption {
 	@Then("^There should be a confirmation message$")
 	public void checkConfirmMessage() throws Throwable {
 		Assert.assertTrue(driver.findElement(By.tagName("p")).getText().contains("YOUR ADOPTION HAS BEEN SET UP"));
-		driver.quit();
 	}
 }
