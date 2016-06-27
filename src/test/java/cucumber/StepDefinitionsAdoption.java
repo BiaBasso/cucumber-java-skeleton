@@ -15,24 +15,24 @@ public class StepDefinitionsAdoption {
 	WebDriver driver = null;
 
 	@Given("^I am on the zoo sites$")
-	public void i_am_on_the_zoo_sites() throws Throwable {
+	public void navigateToZoo() throws Throwable {
 		System.setProperty("webdriver.chrome.driver", "/opt/google/chrome/chromedriver");
 		driver = new ChromeDriver();
 		driver.navigate().to("http://192.168.0.24/Projetos/B/Home.html");
 	}
 
 	@When("^I navigate to adoption$")
-	public void i_navigate_to_adoption() throws Throwable {
+	public void navigateToAdoption() throws Throwable {
 		driver.findElement(By.id("adoption_link")).click();
 	}
 
 	@And("^I check for an available animal$")
-	public void i_check_for_an_available_animal() throws Throwable {
+	public void checkForAnimal() throws Throwable {
 		driver.findElement(By.id("check_btn_02")).click();
 	}
 
 	@And("^I populate the form$")
-	public void i_populate_the_form() throws Throwable {
+	public void populateForm() throws Throwable {
 		driver.findElement(By.name("name_field")).sendKeys("name value");
 		driver.findElement(By.name("address_field")).sendKeys("address_value");
 		driver.findElement(By.name("postcode_field")).sendKeys("postcode_value");
@@ -41,7 +41,7 @@ public class StepDefinitionsAdoption {
 	}
 
 	@Then("^There should be a confirmation message$")
-	public void there_should_be_a_confirmation_message() throws Throwable {
+	public void checkConfirmMessage() throws Throwable {
 		Assert.assertTrue(driver.findElement(By.tagName("p")).getText().contains("YOUR ADOPTION HAS BEEN SET UP"));
 		driver.quit();
 	}
