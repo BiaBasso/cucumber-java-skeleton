@@ -38,7 +38,7 @@ public class StepDefinitionsAdoption {
 	@After("@web")
 	public void testShutDownWeb(){
 		System.out.println("After method with web tag executed");
-		driver.quit();
+		//driver.quit();
 	}
 
 	@Given("^I am on the zoo sites$")
@@ -53,20 +53,23 @@ public class StepDefinitionsAdoption {
 
 	@And("^I check for an available animal$")
 	public void checkForAnimal() throws Throwable {
+		System.out.println(driver.getPageSource());
 		driver.findElement(By.id("check_btn_02")).click();
 	}
 
 	@And("^I populate the form$")
 	public void populateForm() throws Throwable {
+		System.out.println(driver.getPageSource());
 		driver.findElement(By.name("name_field")).sendKeys("name value");
 		driver.findElement(By.name("address_field")).sendKeys("address_value");
 		driver.findElement(By.name("postcode_field")).sendKeys("postcode_value");
 		driver.findElement(By.name("email_field")).sendKeys("email_value");
-		driver.findElement(By.name("submit_adoption")).click();
+		driver.findElement(By.id("submit_adoption")).click();
 	}
 
 	@Then("^There should be a confirmation message$")
 	public void checkConfirmMessage() throws Throwable {
-		Assert.assertTrue(driver.findElement(By.tagName("p")).getText().contains("YOUR ADOPTION HAS BEEN SET UP"));
+		System.out.println(driver.getPageSource());
+		Assert.assertTrue(driver.getPageSource().contains("Cadastro feito"));
 	}
 }
