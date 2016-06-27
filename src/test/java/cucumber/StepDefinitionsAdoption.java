@@ -59,7 +59,6 @@ public class StepDefinitionsAdoption {
 
 	@And("^I populate the form$")
 	public void populateForm() throws Throwable {
-		System.out.println(driver.getPageSource());
 		driver.findElement(By.name("name_field")).sendKeys("name value");
 		driver.findElement(By.name("address_field")).sendKeys("address_value");
 		driver.findElement(By.name("postcode_field")).sendKeys("postcode_value");
@@ -69,7 +68,6 @@ public class StepDefinitionsAdoption {
 
 	@Then("^There should be a confirmation message$")
 	public void checkConfirmMessage() throws Throwable {
-		System.out.println(driver.getPageSource());
-		Assert.assertTrue(driver.getPageSource().contains("Cadastro feito"));
+		Assert.assertTrue(driver.getTitle().contains("Contact"));
 	}
 }
