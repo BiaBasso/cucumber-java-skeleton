@@ -53,7 +53,7 @@ public class StepDefinitionsAdoption {
 
 	@And("^I check for an available animal$")
 	public void checkForAnimal() throws Throwable {
-		System.out.println(driver.getPageSource());
+		Thread.sleep(5000);
 		driver.findElement(By.id("check_btn_02")).click();
 	}
 
