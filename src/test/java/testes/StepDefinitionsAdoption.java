@@ -15,30 +15,27 @@ import junit.framework.Assert;
 public class StepDefinitionsAdoption {
 
 	WebDriver driver = null;
-	
-	@Before
-	public void testSetUp(){
-		System.out.println("Before method executed");
-		//System.setProperty("webdriver.chrome.driver", "/opt/google/chrome/chromedriver");
-		//driver = new ChromeDriver();
-	}
-	
-	@After
-	public void testShutDown(){
-		System.out.println("After method executed");
-		//driver.quit();
-	}
+
+	/*
+	 * @Before public void testSetUp(){ System.out.println(
+	 * "Before method executed");
+	 * System.setProperty("webdriver.chrome.driver",
+	 * "/opt/google/chrome/chromedriver"); driver = new ChromeDriver(); }
+	 * 
+	 * @After public void testShutDown(){ System.out.println(
+	 * "After method executed"); driver.quit(); }
+	 */
 	@Before("@web")
-	public void testSetUpWeb(){
+	public void testSetUpWeb() {
 		System.out.println("Before method with web tag executed");
 		System.setProperty("webdriver.chrome.driver", "/opt/google/chrome/chromedriver");
 		driver = new ChromeDriver();
 	}
-	
+
 	@After("@web")
-	public void testShutDownWeb(){
+	public void testShutDownWeb() {
 		System.out.println("After method with web tag executed");
-		//driver.quit();
+		driver.quit();
 	}
 
 	@Given("^I am on the zoo sites$")
