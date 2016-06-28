@@ -25,14 +25,14 @@ public class StepDefinitionsAdoption {
 	 * @After public void testShutDown(){ System.out.println(
 	 * "After method executed"); driver.quit(); }
 	 */
-	@Before("@web")
+	@Before("@Adoption")
 	public void testSetUpWeb() {
 		System.out.println("Before method with web tag executed");
 		System.setProperty("webdriver.chrome.driver", "/opt/google/chrome/chromedriver");
 		driver = new ChromeDriver();
 	}
 
-	@After("@web")
+	@After("@Adoption")
 	public void testShutDownWeb() {
 		System.out.println("After method with web tag executed");
 		driver.quit();
