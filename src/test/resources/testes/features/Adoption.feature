@@ -1,6 +1,6 @@
 Feature: Adopt an animal
 
-  @web
+  @Adoption
   Scenario: Adopt an animal which is available
     Given I am on the zoo sites
     When I navigate to adoption
