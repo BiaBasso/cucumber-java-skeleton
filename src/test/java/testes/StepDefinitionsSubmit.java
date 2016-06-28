@@ -47,7 +47,7 @@ public class StepDefinitionsSubmit {
 
 	@Then("^I check that the form has been submitted$")
 	public void checkConfirmationPage() throws Throwable {
-	    Assert.assertTrue(driver.getTitle().equals("Contact Confirmation"));
+	    Assert.assertTrue(driver.getTitle().equals("Contact"));
 	    driver.quit();
 	}
 }
