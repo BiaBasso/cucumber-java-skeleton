@@ -6,13 +6,13 @@ import org.openqa.selenium.support.ui.Select;
 
 import cucumber.api.java.en.Then;
 
-public class AdoptionPageStepDefinition {
-
-	WebDriver driver;
+public class AdoptionPageStepDefinition extends AbstractPageStepDefinition {
+	
+	WebDriver driver = getDriver();
 
 	@Then("^I set the start date to \"([^\"]*)\"$")
 	public void i_set_the_start_date_to(String dropItem) throws Throwable {
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 		Select dropDown = new Select(driver.findElement(By.id("start_select")));
 		dropDown.selectByVisibleText(dropItem);
 	}
