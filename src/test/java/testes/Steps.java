@@ -3,6 +3,7 @@ package testes;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import junit.framework.Assert;
 
 public class Steps {
 
@@ -19,5 +20,10 @@ public class Steps {
 	@Then("^I check I am on the correct page$")
 	public void checkCorrectPage() throws Throwable {
 	    System.out.println("Then step was executed");
+	}
+	
+	@Then("^I check I am on the correct page2$")
+	public void checkCorrectPage2() throws Throwable {
+	    Assert.assertFalse(false);
 	}
 }
