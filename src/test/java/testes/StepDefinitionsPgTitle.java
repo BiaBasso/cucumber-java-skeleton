@@ -23,7 +23,7 @@ public class StepDefinitionsPgTitle {
 	
 	@And("^I close the browser$")
 	public void closeBrowser() throws Throwable {
-		driver.close();
+		driver.quit();
 	}
 
 	@When("^I click on ([^\"]*)$")
