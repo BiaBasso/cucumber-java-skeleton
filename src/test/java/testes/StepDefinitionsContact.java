@@ -18,7 +18,7 @@ public class StepDefinitionsContact {
 	public void shouldNavigateToZooSite() throws Throwable {
 		System.setProperty("webdriver.chrome.driver", "/opt/google/chrome/chromedriver");
 		driver = new ChromeDriver();
-		driver.navigate().to("http://192.168.0.22/Projetos/B/Home.html");
+		driver.navigate().to("http://192.168.0.24/Projetos/B/Home.html");
 	}
 
 	@When("^I click on the contact link$")
@@ -38,5 +38,6 @@ public class StepDefinitionsContact {
 	@Then("^I should be on the contact confirmation page$")
 	public void checkOnContactConfirmationPage() throws Throwable {
 		Assert.assertTrue("Not on contact confirmation page", driver.getTitle().equals("Contact"));
+		driver.quit();
 	}
 }
