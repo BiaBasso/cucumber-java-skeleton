@@ -7,23 +7,18 @@ import junit.framework.Assert;
 
 public class Steps {
 
-	@Given("^I navigate to a site$")
-	public void navigateToSite() throws Throwable {
-	    System.out.println("Given step was executed");
+	@Given("^I have opened a \"([^\"]*)\" window$")
+	public void openAWindow(String window) throws Throwable {
+	    System.out.println("Opened a window for " + window);
 	}
 	
-	@When("^I click a button$")
-	public void clickButton() throws Throwable {
-	    System.out.println("When step was executed");
+	@When("^I click some link$")
+	public void clickLink() throws Throwable {
+	    System.out.println("Click on link");
 	}
 
-	@Then("^I check I am on the correct page$")
-	public void checkCorrectPage() throws Throwable {
-	    System.out.println("Then step was executed");
-	}
-	
-	@Then("^I check I am on the correct page2$")
-	public void checkCorrectPage2() throws Throwable {
-	    Assert.assertFalse(false);
+	@Then("^A new window opens$")
+	public void checkWindowOpen() throws Throwable {
+	    System.out.println("Window should be open");
 	}
 }
