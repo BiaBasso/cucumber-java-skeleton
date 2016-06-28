@@ -28,6 +28,7 @@ public class StepDefinitionsPgTitle {
 
 	@When("^I click on ([^\"]*)$")
 	public void ClickOnLink(String link) throws Throwable {
+		Thread.sleep(5000);
 		driver.findElement(By.id(link)).click();
 	}
 
