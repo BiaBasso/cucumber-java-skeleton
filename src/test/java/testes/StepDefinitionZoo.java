@@ -21,26 +21,31 @@ public class StepDefinitionZoo extends AbstractPageStepDefinition{
 
 	@When("^I click the \"([^\"]*)\"$")
 	public void i_click_the(String link) throws Throwable {
+		Thread.sleep(5000);
 	    driver.findElement(By.id(link.toLowerCase() + "_link")).click();
 	}
 
 	@And("^I enter \"([^\"]*)\" into the name field$")
 	public void i_enter_into_the_name_field(String value) throws Throwable {
+		Thread.sleep(1000);
 	    driver.findElement(By.name("name_field")).sendKeys(value);
 	}
 
 	@And("^I enter \"([^\"]*)\" into the address field$")
 	public void i_enter_into_the_address_field(String value) throws Throwable {
+		Thread.sleep(1000);
 		driver.findElement(By.name("address_field")).sendKeys(value);
 	}
 
 	@And("^I enter \"([^\"]*)\" into the postcode field$")
 	public void i_enter_into_the_postcode_field(String value) throws Throwable {
-		driver.findElement(By.name("postcod_field")).sendKeys(value);
+		Thread.sleep(1000);
+		driver.findElement(By.name("postcode_field")).sendKeys(value);
 	}
 
 	@And("^I enter \"([^\"]*)\" into the email field$")
 	public void i_enter_into_the_email_field(String value) throws Throwable {
+		Thread.sleep(1000);
 		driver.findElement(By.name("email_field")).sendKeys(value);
 	}
 
