@@ -69,4 +69,14 @@ public class StepDefinitionZoo extends AbstractPageStepDefinition {
 	public void i_closed_the_browser() throws Throwable {
 		contactConfirmPage.closeDriver();
 	}
+	
+	@And("^I populate the entire form$")
+	public void i_populate_the_entire_form() throws Throwable {
+		Thread.sleep(2000);
+		contactPage
+		.setNameField("name")
+		.setAddressField("address")
+		.setPostcodeField("postcode")
+		.setEmailField("email");
+	}
 }
