@@ -10,6 +10,6 @@ public class ContactConfirmPage extends ContactPage{
 	}
 	
 	public String getPageTitle() {
-		return driver.findElement(By.cssSelector(".content h1")).getText();
+		return driver.findElement(By.id("titulo")).getText();
 	}
 }
