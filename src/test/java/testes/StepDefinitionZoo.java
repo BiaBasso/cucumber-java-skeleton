@@ -83,6 +83,7 @@ public class StepDefinitionZoo {
 		contactPage
 		.setNameField("name")
 		.setCheckDonation()
+		.setRadioEmail()
 		.setAddressField("address")
 		.setPostcodeField("postcode")
 		.setEmailField("email");
