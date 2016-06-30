@@ -17,6 +17,5 @@ public class AbstractPage {
 	
 	public void closeDriver() {
 		driver.quit();
-		driver = null;
 	}
 }
