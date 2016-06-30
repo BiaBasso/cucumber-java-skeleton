@@ -13,6 +13,11 @@ public class ContactPage extends AbstractPage {
 		driver.findElement(By.name("name_field")).sendKeys(value);
 		return new ContactPage(driver);
 	}
+	
+	public ContactPage setCheckDonation() {
+		driver.findElement(By.cssSelector("label[for='checkbox-2'] .mdl-checkbox__ripple-container")).click();
+		return new ContactPage(driver);
+	}
 
 	public ContactPage setAddressField(String value) {
 		driver.findElement(By.name("address_field")).sendKeys(value);
