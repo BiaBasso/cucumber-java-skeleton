@@ -1,26 +1,30 @@
 package testes;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import junit.framework.Assert;
 import testes.pageObject.ContactConfirmPage;
 import testes.pageObject.ContactPage;
 import testes.pageObject.LandingPage;
 
-public class StepDefinitionZoo extends AbstractPageStepDefinition {
+public class StepDefinitionZoo {
 
-	WebDriver driver = getDriver();
+	WebDriver driver;
 	LandingPage landingPage;
 	ContactPage contactPage;
 	ContactConfirmPage contactConfirmPage;
-	
 
 	@Given("^I stay on the zoo websites$")
 	public void i_stay_on_the_zoo_websites() throws Throwable {
+		if(driver == null){
+			System.setProperty("webdriver.chrome.driver", "/opt/google/chrome/chromedriver");
+			driver = new ChromeDriver();
+		}
 		landingPage = new LandingPage(driver);
 		landingPage.navigateToAdocaoZoo();
 	}
@@ -62,12 +66,14 @@ public class StepDefinitionZoo extends AbstractPageStepDefinition {
 
 	@Then("^I checked I am on the confirmation page$")
 	public void i_checked_I_am_on_the_confirmation_page() throws Throwable {
-		Assert.assertTrue(contactConfirmPage.getPageTitle().contains("We have your message"));
+		Thread.sleep(2000);
+		Assert.assertTrue(contactConfirmPage.getPageTitle().contains("Cadastro feito"));
 	}
 
 	@And("^I closed the browser$")
 	public void i_closed_the_browser() throws Throwable {
 		contactConfirmPage.closeDriver();
+		driver = null;
 	}
 	
 	@And("^I populate the entire form$")
@@ -75,6 +81,7 @@ public class StepDefinitionZoo extends AbstractPageStepDefinition {
 		Thread.sleep(2000);
 		contactPage
 		.setNameField("name")
+		.setCheckDonation()
 		.setAddressField("address")
 		.setPostcodeField("postcode")
 		.setEmailField("email");
