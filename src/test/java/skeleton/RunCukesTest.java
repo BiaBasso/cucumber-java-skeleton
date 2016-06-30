@@ -1,10 +1,8 @@
 package skeleton;
 
 import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
-import org.junit.runner.RunWith;
+import cucumber.api.testng.AbstractTestNGCucumberTests;
 
-@RunWith(Cucumber.class)
 @CucumberOptions(plugin = {"pretty"})
-public class RunCukesTest {
+public class RunCukesTest extends AbstractTestNGCucumberTests {
 }
