@@ -1,6 +1,5 @@
 package testes;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -8,9 +7,11 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+
 import testes.pageObject.ContactConfirmPage;
 import testes.pageObject.ContactPage;
 import testes.pageObject.LandingPage;
+import testes.util.NossoAssert;
 
 public class StepDefinitionZoo {
 
@@ -67,7 +68,7 @@ public class StepDefinitionZoo {
 	@Then("^I checked I am on the confirmation page$")
 	public void i_checked_I_am_on_the_confirmation_page() throws Throwable {
 		Thread.sleep(2000);
-		Assert.assertTrue(contactConfirmPage.getPageTitle().contains("Cadastro feito"));
+		NossoAssert.assertTrue(contactConfirmPage.getPageTitle().contains("Cadastro feito"));
 	}
 
 	@And("^I closed the browser$")
