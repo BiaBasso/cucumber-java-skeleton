@@ -18,6 +18,11 @@ public class ContactPage extends AbstractPage {
 		driver.findElement(By.cssSelector("label[for='checkbox-2'] .mdl-checkbox__ripple-container")).click();
 		return new ContactPage(driver);
 	}
+	
+	public ContactPage setRadioEmail() {
+		driver.findElement(By.cssSelector("label[for='option-2'] .mdl-radio__ripple-container")).click();
+		return new ContactPage(driver);
+	}
 
 	public ContactPage setAddressField(String value) {
 		driver.findElement(By.name("address_field")).sendKeys(value);
