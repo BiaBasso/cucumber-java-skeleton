@@ -1,54 +1,46 @@
 package testes;
 
-import java.net.URL;
-
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-
 import testes.pageObject.ContactConfirmPage;
 import testes.pageObject.ContactPage;
 import testes.pageObject.LandingPage;
 import testes.util.NossoAssert;
+import testes.util.NossoDomDriver;
 
 public class StepDefinitionZoo {
 
-	WebDriver driver;
+	NossoDomDriver domDriver;
+	
 	LandingPage landingPage;
 	ContactPage contactPage;
 	ContactConfirmPage contactConfirmPage;
 
 	@Given("^I stay on the zoo websites$")
 	public void i_stay_on_the_zoo_websites() throws Throwable {
-		String gridURL = "http://192.168.0.28:4441/wd/hub";
-		if (gridURL.length() == 0) {
-			System.setProperty("webdriver.chrome.driver", "/opt/google/chrome/chromedriver");
-			driver = new ChromeDriver();
+		
+		String gridURL = null;
+//		gridURL = "http://192.168.0.28:4441/wd/hub";
+		
+		if (gridURL == null) {
+			
+			domDriver = NossoDomDriver.buildChromeDriver();
+			
 		} else {
 
-			DesiredCapabilities capability = DesiredCapabilities.firefox();
-			capability.setBrowserName("firefox");
-			capability.setPlatform(Platform.LINUX);
-
-			driver = new RemoteWebDriver(new URL(gridURL), capability);
+			domDriver = NossoDomDriver.buildRemoteFirefoxDriver(gridURL);
 		}
 
-		landingPage = new LandingPage(driver);
+		landingPage = new LandingPage(domDriver);
 		landingPage.navigateToAdocaoZoo();
 	}
 
 	@When("^I click the \"([^\"]*)\"$")
 	public void i_click_the(String link) throws Throwable {
 		Thread.sleep(5000);
-		contactPage = landingPage.navigateToContactPage(link);
+		contactPage = landingPage.navigateToContactPage(link + "_link");
 	}
 
 	@And("^I enter \"([^\"]*)\" into the name field$")
@@ -89,7 +81,7 @@ public class StepDefinitionZoo {
 	@And("^I closed the browser$")
 	public void i_closed_the_browser() throws Throwable {
 		contactConfirmPage.closeDriver();
-		driver = null;
+		domDriver = null;
 	}
 
 	@And("^I populate the entire form$")
