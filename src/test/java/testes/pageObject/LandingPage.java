@@ -1,16 +1,15 @@
 package testes.pageObject;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import testes.util.NossoDomDriver;
 
 public class LandingPage extends AbstractPage{
 
-	public LandingPage (WebDriver driver) {
-		super(driver);
+	public LandingPage (NossoDomDriver domDriver) {
+		super(domDriver);
 	}
 	
-	public ContactPage navigateToContactPage(String link) {
-	    driver.findElement(By.id(link.toLowerCase() + "_link")).click();
-	    return new ContactPage(driver);
+	public ContactPage navigateToContactPage(String id) {
+		domDriver.findElementByIdAndClick(id);
+	    return new ContactPage(domDriver);
 	}
 }

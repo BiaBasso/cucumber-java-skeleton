@@ -1,15 +1,14 @@
 package testes.pageObject;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import testes.util.NossoDomDriver;
 
-public class ContactConfirmPage extends ContactPage{
+public class ContactConfirmPage extends ContactPage {
 
-	public ContactConfirmPage(WebDriver driver){
-		super(driver);
+	public ContactConfirmPage(NossoDomDriver domDriver) {
+		super(domDriver);
 	}
-	
+
 	public String getPageTitle() {
-		return driver.findElement(By.id("titulo")).getText();
+		return domDriver.findElementByIdAndReturnText("titulo");
 	}
 }

@@ -1,46 +1,45 @@
 package testes.pageObject;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import testes.util.NossoDomDriver;
 
 public class ContactPage extends AbstractPage {
 
-	public ContactPage(WebDriver driver) {
-		super(driver);
+	public ContactPage(NossoDomDriver domDriver) {
+		super(domDriver);
 	}
 
 	public ContactPage setNameField(String value) {
-		driver.findElement(By.name("name_field")).sendKeys(value);
-		return new ContactPage(driver);
+		domDriver.findElementByNameAndFillWithValue("name_field", value);
+		return new ContactPage(domDriver);
 	}
-	
+
 	public ContactPage setCheckDonation() {
-		driver.findElement(By.cssSelector("label[for='checkbox-2'] .mdl-checkbox__ripple-container")).click();
-		return new ContactPage(driver);
+		domDriver.findElementByCssSelectorAndClick("label[for='checkbox-2'] .mdl-checkbox__ripple-container");
+		return new ContactPage(domDriver);
 	}
-	
+
 	public ContactPage setRadioEmail() {
-		driver.findElement(By.cssSelector("label[for='option-2'] .mdl-radio__ripple-container")).click();
-		return new ContactPage(driver);
+		domDriver.findElementByCssSelectorAndClick("label[for='option-2'] .mdl-radio__ripple-container");
+		return new ContactPage(domDriver);
 	}
 
 	public ContactPage setAddressField(String value) {
-		driver.findElement(By.name("address_field")).sendKeys(value);
-		return new ContactPage(driver);
+		domDriver.findElementByNameAndFillWithValue("address_field", value);
+		return new ContactPage(domDriver);
 	}
 
 	public ContactPage setPostcodeField(String value) {
-		driver.findElement(By.name("postcode_field")).sendKeys(value);
-		return new ContactPage(driver);
+		domDriver.findElementByNameAndFillWithValue("postcode_field", value);
+		return new ContactPage(domDriver);
 	}
 
 	public ContactPage setEmailField(String value) {
-		driver.findElement(By.name("email_field")).sendKeys(value);
-		return new ContactPage(driver);
+		domDriver.findElementByNameAndFillWithValue("email_field", value);
+		return new ContactPage(domDriver);
 	}
 
 	public ContactConfirmPage submitForm() {
-		driver.findElement(By.id("submit_message")).click();
-		return new ContactConfirmPage(driver);
+		domDriver.findElementByIdAndClick("submit_message");
+		return new ContactConfirmPage(domDriver);
 	}
 }
