@@ -1,7 +1,13 @@
 package testes;
 
+import java.net.URL;
+
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -22,42 +28,51 @@ public class StepDefinitionZoo {
 
 	@Given("^I stay on the zoo websites$")
 	public void i_stay_on_the_zoo_websites() throws Throwable {
-		if(driver == null){
+		String gridURL = "http://192.168.0.28:4441/wd/hub";
+		if (gridURL.length() == 0) {
 			System.setProperty("webdriver.chrome.driver", "/opt/google/chrome/chromedriver");
 			driver = new ChromeDriver();
+		} else {
+
+			DesiredCapabilities capability = DesiredCapabilities.firefox();
+			capability.setBrowserName("firefox");
+			capability.setPlatform(Platform.LINUX);
+
+			driver = new RemoteWebDriver(new URL(gridURL), capability);
 		}
+
 		landingPage = new LandingPage(driver);
 		landingPage.navigateToAdocaoZoo();
 	}
 
 	@When("^I click the \"([^\"]*)\"$")
 	public void i_click_the(String link) throws Throwable {
-		 Thread.sleep(5000);
-		 contactPage = landingPage.navigateToContactPage(link);
+		Thread.sleep(5000);
+		contactPage = landingPage.navigateToContactPage(link);
 	}
 
 	@And("^I enter \"([^\"]*)\" into the name field$")
 	public void i_enter_into_the_name_field(String value) throws Throwable {
-		 Thread.sleep(1000);
-		 contactPage.setNameField(value);
+		Thread.sleep(1000);
+		contactPage.setNameField(value);
 	}
 
 	@And("^I enter \"([^\"]*)\" into the address field$")
 	public void i_enter_into_the_address_field(String value) throws Throwable {
-		 Thread.sleep(1000);
-		 contactPage.setAddressField(value);
+		Thread.sleep(1000);
+		contactPage.setAddressField(value);
 	}
 
 	@And("^I enter \"([^\"]*)\" into the postcode field$")
 	public void i_enter_into_the_postcode_field(String value) throws Throwable {
-		 Thread.sleep(1000);
+		Thread.sleep(1000);
 		contactPage.setPostcodeField(value);
 	}
 
 	@And("^I enter \"([^\"]*)\" into the email field$")
 	public void i_enter_into_the_email_field(String value) throws Throwable {
-		 Thread.sleep(1000);
-		 contactPage.setEmailField(value);
+		Thread.sleep(1000);
+		contactPage.setEmailField(value);
 	}
 
 	@And("^I submit the contact form$")
@@ -76,16 +91,11 @@ public class StepDefinitionZoo {
 		contactConfirmPage.closeDriver();
 		driver = null;
 	}
-	
+
 	@And("^I populate the entire form$")
 	public void i_populate_the_entire_form() throws Throwable {
 		Thread.sleep(2000);
-		contactPage
-		.setNameField("name")
-		.setCheckDonation()
-		.setRadioEmail()
-		.setAddressField("address")
-		.setPostcodeField("postcode")
-		.setEmailField("email");
+		contactPage.setNameField("name").setCheckDonation().setRadioEmail().setAddressField("address")
+				.setPostcodeField("postcode").setEmailField("email");
 	}
 }
